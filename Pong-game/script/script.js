@@ -20,7 +20,7 @@ var Ball = {
             y: (this.canvas.height / 2) - 9,
             moveX: DIRECTION.IDLE,
             moveY: DIRECTION.IDLE,
-            speed: incrementedSpeed  7 
+            speed: incrementedSpeed || 7 
         };
     }
 };
@@ -130,8 +130,7 @@ var Game = {
  
             // Move player if they player.move value was updated by a keyboard event
             if (this.player.move === DIRECTION.UP) this.player.y -= this.player.speed;
-            else if (this.player.move === DIRECTION.DOWN
-                     ) this.player.y += this.player.speed;
+            else if (this.player.move === DIRECTION.DOWN) this.player.y += this.player.speed;
  
             // On new serve (start of each turn) move the ball to the correct side
             // and randomize the direction to add some challenge.
@@ -214,7 +213,7 @@ var Game = {
     // Draw the objects to the canvas element
     draw: function () {
         // Clear the Canvas
-      this.context.clearRect(
+        this.context.clearRect(
             0,
             0,
             this.canvas.width,
@@ -326,7 +325,7 @@ var Game = {
             }
  
             // Handle up arrow and w key events
-            if (key.keyCode === 38  key.keyCode === 87) Pong.player.move = DIRECTION.UP;
+            if (key.keyCode === 38 || key.keyCode === 87) Pong.player.move = DIRECTION.UP;
  
             // Handle down arrow and s key events
             if (key.keyCode === 40 || key.keyCode === 83) Pong.player.move = DIRECTION.DOWN;
@@ -349,7 +348,8 @@ var Game = {
     _turnDelayIsOver: function() {
         return ((new Date()).getTime() - this.timer >= 1000);
     },
-  // Select a random color as the background of each level/round.
+ 
+    // Select a random color as the background of each level/round.
     _generateRoundColor: function () {
         var newColor = colors[Math.floor(Math.random() * colors.length)];
         if (newColor === this.color) return Pong._generateRoundColor();
