@@ -130,8 +130,7 @@ var Game = {
  
             // Move player if they player.move value was updated by a keyboard event
             if (this.player.move === DIRECTION.UP) this.player.y -= this.player.speed;
-            else if (this.player.move === DIRECTION.
-                   DOWN) this.player.y += this.player.speed;
+            else if (this.player.move === DIRECTION.DOWN) this.player.y += this.player.speed;
  
             // On new serve (start of each turn) move the ball to the correct side
             // and randomize the direction to add some challenge.
@@ -348,7 +347,7 @@ var Game = {
     // Wait for a delay to have passed after each turn.
     _turnDelayIsOver: function() {
         return ((new Date()).getTime() - this.timer >= 1000);
-        },
+    },
  
     // Select a random color as the background of each level/round.
     _generateRoundColor: function () {
