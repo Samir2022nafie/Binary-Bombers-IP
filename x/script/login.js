@@ -28,7 +28,7 @@ function printAllAccounts() {
   const currentuser = JSON.parse(localStorage.getItem("currentuser")) || [];
   localStorage.setItem("currentuser", JSON.stringify(null));
   // Clear before Loading for avoiding errors
-  //localStorage.setItem("users", JSON.stringify(null));
+  localStorage.setItem("users", JSON.stringify(null));
   if (users.length === 0) {
     console.log("No accounts are currently stored.");
   } else {
