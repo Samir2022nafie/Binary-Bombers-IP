@@ -43,7 +43,7 @@ body {
   margin-left: 16px;
   font-size: 18px;
 }
-#post-icon{
+#logout-icon{
  display:none;
 }
 .post-btn{
@@ -159,10 +159,6 @@ body {
 .post-button:hover{
     background-color:rgba(255,255,255,0.7);
 }
-.tweet{
-    padding:16px;
-    border:bottom:1px solid rgba(255,255,255,0.3);
-}
 .tweet-header{
     display:flex;
     align-items:center;
@@ -266,7 +262,7 @@ body {
        .post-btn{
            display:none;
        }
-       #post-icon{
+       #logout-icon{
            display:flex;
        }
 }
@@ -277,7 +273,7 @@ body {
     .post-btn{
         display:none;
     }
-    #post-icon{
+    #logout-icon{
         display:flex;
     }
     .container{
