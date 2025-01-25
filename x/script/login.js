@@ -94,6 +94,7 @@ function validateLoginForm() {
 document.querySelector(".next-btn").addEventListener("click", (e) => {
   e.preventDefault();
   if (validateLoginForm()) {
+    printAllAccounts();
     const emailOrPhone = document.querySelector(".input-field").value;
     const password = document.querySelector("#password").value;
     const users = JSON.parse(localStorage.getItem("users")) || [];
@@ -156,6 +157,7 @@ function validateSignupForm() {
 document.querySelector(".next-button").addEventListener("click", (e) => {
   e.preventDefault();
   if (validateSignupForm()) {
+    printAllAccounts();
     const name = document.querySelector("#name").value;
     const phoneOrEmail = document.querySelector("#phone").value;
     const password = document.querySelector("#signuppassword").value;
