@@ -25,6 +25,10 @@ closeBtn.addEventListener("click", () => {
 // Function to print all stored accounts
 function printAllAccounts() {
   const users = JSON.parse(localStorage.getItem("users")) || [];
+  const currentuser = JSON.parse(localStorage.getItem("currentuser")) || [];
+  localStorage.setItem("currentuser", JSON.stringify(null));
+  // Clear before Loading for avoiding errors
+  //localStorage.setItem("users", JSON.stringify(null));
   if (users.length === 0) {
     console.log("No accounts are currently stored.");
   } else {
@@ -34,14 +38,19 @@ function printAllAccounts() {
       console.log(`  Name: ${user.name}`);
       console.log(`  Phone/Email: ${user.phoneOrEmail}`);
       console.log(`  Password: ${user.password}`);
-      console.log(`  Date of Birth: ${user.dob}`  ) // Avoid printing passwords in a real application
+      console.log(`  Date of Birth: ${user.dob}`  )
+    });
+    console.log("Currently Stored Accounts:");
+    currentuser.forEach((currentuser, index) => {
+      console.log(`Account!!!!!! ${index + 1}:`);
+      console.log(`  Name!!!!!: ${currentuser.name}`);
+      console.log(`  Phone/Email!!!!!: ${currentuser.phoneOrEmail}`);
+      console.log(`  Password!!!!!!: ${currentuser.password}`);
+      console.log(`  Date of Birth!!!!!!: ${currentuser.dob}`  ) 
     });
   }
 }
-
-// Call the function to print accounts (for debugging purposes)
 printAllAccounts();
-
 // Utility function to show error messages
 function showError(input, message) {
   const parent = input.parentElement;
@@ -88,15 +97,15 @@ document.querySelector(".next-btn").addEventListener("click", (e) => {
     const emailOrPhone = document.querySelector(".input-field").value;
     const password = document.querySelector("#password").value;
     const users = JSON.parse(localStorage.getItem("users")) || [];
-    const userExists = users.some(
-      (user) => user.phoneOrEmail === emailOrPhone && user.password === password
-    );
-
+    localStorage.setItem("currentuser", JSON.stringify(null));
+    const userExists = users.find((user) => user.phoneOrEmail === emailOrPhone && user.password === password);
     if (userExists) {
-      alert("Login successful!");
+      localStorage.setItem("currentuser", JSON.stringify(userExists));
+      const currentuser = JSON.parse(localStorage.getItem("currentuser")) || [];
+      alert("login is Valid Welcome"); 
       window.location.href = "foryoupage.html";
     } else {
-      alert("Invalid login credentials.");
+      alert("Invalid login credentials or User Doesn't Exist.");
     }
   }
 });
@@ -147,7 +156,6 @@ function validateSignupForm() {
 document.querySelector(".next-button").addEventListener("click", (e) => {
   e.preventDefault();
   if (validateSignupForm()) {
-    printAllAccounts();
     const name = document.querySelector("#name").value;
     const phoneOrEmail = document.querySelector("#phone").value;
     const password = document.querySelector("#signuppassword").value;
@@ -159,17 +167,22 @@ document.querySelector(".next-button").addEventListener("click", (e) => {
       phoneOrEmail,
       password,
       dob: `${year}-${month}-${day}`,
+      posts: [],
     };
+
     const users = JSON.parse(localStorage.getItem("users")) || [];
-    const userExists = users.some((existingUser) => existingUser.phoneOrEmail === phoneOrEmail);
+    const userExists = users.find((existingUser) => existingUser.phoneOrEmail === phoneOrEmail);
+    localStorage.setItem("currentuser", JSON.stringify(null));
     if (userExists) {
+      localStorage.setItem("currentuser", JSON.stringify(userExists));
       alert("Account already exists. Please log in.");
       window.location.href = "foryoupage.html";
+    } else {
+      localStorage.setItem("users", JSON.stringify(user));
+      localStorage.setItem("currentuser", JSON.stringify(user));
+      alert("Account created!");
+      window.location.href = "foryoupage.html";
     }
-    users.push(user);
-    localStorage.setItem("users", JSON.stringify(users));
-    alert("Signup form is valid. Account created!");
-    window.location.href = "foryoupage.html";
   }
 });
 
