@@ -179,7 +179,7 @@
     </div>
 
     <script>
-      const currentuser = JSON.parse(localStorage.getItem("currentuser")) || [];
+      const currentuser = JSON.parse(localStorage.getItem("currentuser")) || null;
       const backbutton= document.getElementById("back-button");
       const postsContainer = document.getElementById("posts-container");
       profileSelect = document.querySelector("#fullname");
@@ -187,22 +187,18 @@
       profileSelect = document.querySelector("#initials");
       profileSelect.textContent = currentuser.name.trim()[0];
       function displayPosts() {
-        // Retrieve the current user from local storage
+
         const currentUser = JSON.parse(localStorage.getItem("currentuser"));
-    
         if (!currentUser || !currentUser.posts || currentUser.posts.length === 0) {
           postsContainer.innerHTML = "<p>No posts to display.</p>";
           return;
         }
     
-        // Format posts and display them
         const formattedPosts = currentUser.posts.map((post, index) => `<p>${index + 1}. ${post}</p>`).join("\n");
         postsContainer.innerHTML = formattedPosts;
         }
       displayPosts();
-      backbutton.addEventListener("click", () => {
-        window.location.href = "foryoupage.html";
-      });
+      backbutton.addEventListener("click", () => {window.location.href = "foryoupage.html"});
     </script>
   </body>
 </html>
