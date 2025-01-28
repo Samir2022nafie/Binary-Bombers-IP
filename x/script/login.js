@@ -5,6 +5,10 @@ const container = document.querySelector(".container");
 const close = document.querySelector(".close-btn");
 const closeBtn = document.querySelector("#close-btn-sign-up");
 const signupPopoverBody = document.querySelector(".popover-sign-up-body");
+const users = JSON.parse(localStorage.getItem("users")) || [];
+const currentuser = JSON.parse(localStorage.getItem("currentuser")) || null;
+localStorage.setItem("currentuser", JSON.stringify(null));
+
 
 signinPopover.addEventListener("click", () => {
   popover.style.display = "flex";
@@ -22,13 +26,11 @@ closeBtn.addEventListener("click", () => {
   signupPopoverBody.style.display = "none";
   container.style.display = "flex";
 });
-// Function to print all stored accounts
+// Function to print all stored accounts for debugging
 function printAllAccounts() {
   const users = JSON.parse(localStorage.getItem("users")) || [];
-  const currentuser = JSON.parse(localStorage.getItem("currentuser")) || [];
-  localStorage.setItem("currentuser", JSON.stringify(null));
-  // Clear before Loading for avoiding errors
-  //localStorage.setItem("users", JSON.stringify(null));
+  const currentuser = JSON.parse(localStorage.getItem("currentuser")) || null;
+
   if (users.length === 0) {
     console.log("No accounts are currently stored.");
   } else {
@@ -38,19 +40,23 @@ function printAllAccounts() {
       console.log(`  Name: ${user.name}`);
       console.log(`  Phone/Email: ${user.phoneOrEmail}`);
       console.log(`  Password: ${user.password}`);
-      console.log(`  Date of Birth: ${user.dob}`  )
-    });
-    console.log("Currently Stored Accounts:");
-    currentuser.forEach((currentuser, index) => {
-      console.log(`Account!!!!!! ${index + 1}:`);
-      console.log(`  Name!!!!!: ${currentuser.name}`);
-      console.log(`  Phone/Email!!!!!: ${currentuser.phoneOrEmail}`);
-      console.log(`  Password!!!!!!: ${currentuser.password}`);
-      console.log(`  Date of Birth!!!!!!: ${currentuser.dob}`  ) 
+      console.log(`  Date of Birth: ${user.dob}`);
     });
   }
+
+  if (currentuser) {
+    console.log("Currently Logged-in Account:");
+    console.log(`  Name: ${currentuser.name}`);
+    console.log(`  Phone/Email: ${currentuser.phoneOrEmail}`);
+    console.log(`  Password: ${currentuser.password}`);
+    console.log(`  Date of Birth: ${currentuser.dob}`);
+  } else {
+    console.log("No user is currently logged in.");
+  }
 }
+
 printAllAccounts();
+
 // Utility function to show error messages
 function showError(input, message) {
   const parent = input.parentElement;
@@ -94,15 +100,12 @@ function validateLoginForm() {
 document.querySelector(".next-btn").addEventListener("click", (e) => {
   e.preventDefault();
   if (validateLoginForm()) {
-    printAllAccounts();
     const emailOrPhone = document.querySelector(".input-field").value;
     const password = document.querySelector("#password").value;
-    const users = JSON.parse(localStorage.getItem("users")) || [];
     localStorage.setItem("currentuser", JSON.stringify(null));
     const userExists = users.find((user) => user.phoneOrEmail === emailOrPhone && user.password === password);
     if (userExists) {
       localStorage.setItem("currentuser", JSON.stringify(userExists));
-      const currentuser = JSON.parse(localStorage.getItem("currentuser")) || [];
       alert("login is Valid Welcome"); 
       window.location.href = "foryoupage.html";
     } else {
@@ -157,7 +160,6 @@ function validateSignupForm() {
 document.querySelector(".next-button").addEventListener("click", (e) => {
   e.preventDefault();
   if (validateSignupForm()) {
-    printAllAccounts();
     const name = document.querySelector("#name").value;
     const phoneOrEmail = document.querySelector("#phone").value;
     const password = document.querySelector("#signuppassword").value;
@@ -172,15 +174,14 @@ document.querySelector(".next-button").addEventListener("click", (e) => {
       posts: [],
     };
 
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    const userExists = users.find((existingUser) => existingUser.phoneOrEmail === phoneOrEmail);
+    const userExists = users.find((users) => users.phoneOrEmail === phoneOrEmail);
     localStorage.setItem("currentuser", JSON.stringify(null));
     if (userExists) {
       localStorage.setItem("currentuser", JSON.stringify(userExists));
-      alert("Account already exists. Please log in.");
-      window.location.href = "foryoupage.html";
+      alert("Account already exists. Please log in or create another one.");
     } else {
-      localStorage.setItem("users", JSON.stringify(user));
+      users.push(user);
+      localStorage.setItem("users", JSON.stringify(users));
       localStorage.setItem("currentuser", JSON.stringify(user));
       alert("Account created!");
       window.location.href = "foryoupage.html";
