@@ -31,42 +31,38 @@
       </div>
     </div>
     <script>
-      const currentuser = JSON.parse(localStorage.getItem("currentuser")) || [];
+      const currentuser = JSON.parse(localStorage.getItem("currentuser")) || null;
       profileSelect = document.querySelector("#avatar-icon");
       profileSelect.textContent = currentuser.name.trim()[0];
       const composeInput = document.querySelector(".compose-input");
       const postButton = document.getElementById("inner-post-button");
       const closeButton = document.querySelector(".close-button");
-      postButton.addEventListener("click", () => {
-        function addNewPost(newPost) {
-          let currentUser = JSON.parse(localStorage.getItem("currentuser"));
-          if (!currentUser) {
-            alert("No user is currently logged in.");
-          return;
-          }
-          if (!currentUser.posts) {
-            currentUser.posts = [];
-          }
-          const newPostIndex = currentUser.posts.length;
-          currentUser.posts.push(newPost);
-          localStorage.setItem("currentuser", JSON.stringify(currentUser));
-          const users = JSON.parse(localStorage.getItem("users")) || [];
-          const userIndex = users.findIndex(
-          (user) => user.phoneOrEmail === currentUser.phoneOrEmail);
-          if (userIndex === -1) {
-            alert("Matching user not found in the users array.");
-            return;
-          }
-          users[userIndex].posts = currentUser.posts;
-          localStorage.setItem("users", JSON.stringify(users));
-          alert("Post added successfully!");
+      function addNewPost(newPost) {
+
+        let currentUser = JSON.parse(localStorage.getItem("currentuser"));
+        if (!currentUser) {
+        alert("No user is currently logged in.");
+        return;
         }
-        addNewPost(composeInput.value)
+        if (!currentUser.posts) {
+          currentUser.posts = [];
+        }
+        const newPostIndex = currentUser.posts.length;
+        currentUser.posts.push(newPost);
+        localStorage.setItem("currentuser", JSON.stringify(currentUser));
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+        alert("Post added successfully!");
         composeInput.value = null;
-      });
-      closeButton.addEventListener("click", () => {
-      window.location.href = "foryoupage.html";
-      });
+        const userIndex = users.findIndex((user) => user.phoneOrEmail === currentUser.phoneOrEmail);
+        if (userIndex === -1) {
+          alert("Matching user not found in the users array.");
+          return;
+        }
+        users[userIndex].posts = currentUser.posts;
+        localStorage.setItem("users", JSON.stringify(users));
+        }
+        postButton.addEventListener("click", () => {addNewPost(composeInput.value)});
+        closeButton.addEventListener("click", () => {window.location.href = "foryoupage.html"});
     </script>
   </body>
 </html>
