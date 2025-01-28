@@ -1,7 +1,8 @@
 const profile = document.querySelector("#profile");
 const post = document.querySelector("#fyp-post-button");
 const logout = document.querySelector("#logout-button");
-const currentuser = JSON.parse(localStorage.getItem("currentuser")) || [];
+const users = JSON.parse(localStorage.getItem("users")) || [];
+const currentuser = JSON.parse(localStorage.getItem("currentuser")) || null;
 
 
 const profileIcon = document.querySelector("#initial-profile-icon");
@@ -48,15 +49,8 @@ function loadHTML(url, targetElementId) {
     });
 }
 
-profile.addEventListener("click", () => {
-  loadHTML("userprofile.html", "grid-2");
-});
+profile.addEventListener("click", () => {loadHTML("userprofile.html", "grid-2")});
 
-post.addEventListener("click", () => {
-  loadHTML("post.html", "grid-2");
-});
+post.addEventListener("click", () => {loadHTML("post.html", "grid-2")});
 
-logout.addEventListener("click", () => {
-  window.location.href = "login.html";
-  
-});
+logout.addEventListener("click", () => {window.location.href = "login.html"});
