@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Brand filtering functionality
     let selectedBrand = null;
     
     window.filterProducts = function(brand) {
@@ -19,8 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
-
-    // Product modal functionality
     window.showProductModal = async function(productId) {
         const response = await fetch(get_product.php?id=${productId});
         const product = await response.json();
