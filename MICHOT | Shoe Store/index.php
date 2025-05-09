@@ -21,11 +21,11 @@ class Product {
     }
 }
 
-// Database connection
+
 $db = new Database();
 $productModel = new Product($db->getPDO());
 
-// Get all products
+
 $products = $productModel->getAllProducts();
 ?>
 
@@ -37,14 +37,14 @@ $products = $productModel->getAllProducts();
     <link rel="stylesheet" href="homepage_style.css">
 </head>
 <body>
-    <!-- Modal Overlay -->
+    
     <div class="modal-overlay" id="modalOverlay"></div>
     <div class="product-modal" id="productModal">
         <div id="modalContent"></div>
         <button onclick="closeModal()" style="margin-top: 1rem">Close</button>
     </div>
 
-    <!-- Header -->
+    
     <header>
         <div class="logo">MICHOT Footwear</div>
         <nav>
@@ -55,18 +55,18 @@ $products = $productModel->getAllProducts();
         </nav>
         <div class="auth-section">
             <?php if (isset($_SESSION['user_id'])): ?>
-                <!-- Logged-in state -->
+                
                 <a href="profile.php" class="user-icon">👤</a>
                 <a href="logout.php" class="auth-btn">Logout</a>
             <?php else: ?>
-                <!-- Guest state -->
+                
                 <a href="login.php" class="auth-btn">Sign In</a>
                 <a href="register.php" class="auth-btn">Register</a>
             <?php endif; ?>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    
     <section class="hero" style="background-image: url('uploads/backgrounds/search.jpg')">
         <h1>Search for shoes, brands, categories etc.</h1>
         <div class="search-bar">
@@ -75,7 +75,7 @@ $products = $productModel->getAllProducts();
         </div>
     </section>
 
-    <!-- Featured Brands Section -->
+    
     <section class="hero" style="background-color:rgb(19, 19, 44); color: white;">
         <h2>Featured Brands</h2>
         <div class="brand-grid">
@@ -91,7 +91,7 @@ $products = $productModel->getAllProducts();
         </div>
     </section>
 
-    <!-- Stock Section -->
+    
     <section class="stock">
         <h2>Stock</h2>
         <div class="product-grid" id="productGrid">
