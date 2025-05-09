@@ -9,8 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
     $file = $_FILES['profile_image'];
-
-    // Validate email
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = "Invalid email format!";
     } elseif ($password !== $confirm_password) {
@@ -18,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (strlen($password) < 6) {
         $error = "Password must be at least 6 characters!";
     } else {
-        // File upload validation
         $allowed = ['image/jpeg', 'image/png'];
         if (!in_array($file['type'], $allowed)) {
             $error = "Only JPG/PNG files allowed!";
