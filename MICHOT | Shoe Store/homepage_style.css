@@ -1,0 +1,244 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f5f5f5;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+nav a {
+    margin: 0 1rem;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+/* Auth Section */
+.auth-section {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.auth-btn {
+    padding: 0.5rem 1rem;
+    background: #0a0b21;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.auth-btn:hover {
+    background: #1b1e66;
+}
+
+.user-icon {
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: #333;
+}
+
+/* Hero Section */
+.hero {
+    background-size: cover;
+    background-position: center;
+    padding: 6rem 0;
+    text-align: center;
+    color: white;
+}
+
+.search-bar {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.search-bar input {
+    width: 400px;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 5px;
+}
+
+.search-bar button {
+    padding: 0.8rem 1.5rem;
+    background: #0a0b21;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background: #1b1e66;
+}
+
+/* Featured Brands Section */
+.featured-brands {
+    padding: 3rem 5%;
+    background-size: cover;
+    background-position: center;
+}
+
+.brand-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.brand-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    height: 200px;
+    transition: box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.brand-card.selected {
+    box-shadow: 0 0 15px #ff6b6b;
+}
+
+.brand-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+}
+
+.brand-card p {
+    font-weight: 600;
+    color: #333;
+}
+
+/* Stock Section */
+.stock {
+    padding: 3rem 5%;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.product-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: left;
+    cursor: pointer;
+}
+
+.product-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.shoe-name {
+    font-weight: bold;
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+.category {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.price {
+    color: #000000;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+}
+
+.product-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    z-index: 1000;
+    width: 80%;
+    max-width: 600px;
+}
+
+.size-selector {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.size-btn {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.size-btn:hover {
+    border-color: #ff6b6b;
+}
+
+.add-to-bag {
+    background: #0a0b21;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 1rem;
+    transition: background 0.3s;
+}
+
+.add-to-bag:hover {
+    background: #1b1e66;
+}
