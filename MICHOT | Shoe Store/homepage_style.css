@@ -1,4 +1,4 @@
-/* Global Reset */
+
 * {
     margin: 0;
     padding: 0;
@@ -10,7 +10,7 @@ body {
     background: #f5f5f5;
 }
 
-/* Header Styles */
+
 header {
     display: flex;
     justify-content: space-between;
@@ -33,7 +33,7 @@ nav a {
     font-weight: 500;
 }
 
-/* Auth Section */
+
 .auth-section {
     display: flex;
     gap: 1rem;
@@ -59,7 +59,7 @@ nav a {
     color: #333;
 }
 
-/* Hero Section */
+
 .hero {
     background-size: cover;
     background-position: center;
@@ -95,7 +95,7 @@ nav a {
     background: #1b1e66;
 }
 
-/* Featured Brands Section */
+
 .featured-brands {
     padding: 3rem 5%;
     background-size: cover;
@@ -136,7 +136,7 @@ nav a {
     color: #333;
 }
 
-/* Stock Section */
+
 .stock {
     padding: 3rem 5%;
 }
@@ -183,7 +183,7 @@ nav a {
     font-size: 1.1rem;
 }
 
-/* Modal Styles */
+
 .modal-overlay {
     display: none;
     position: fixed;
